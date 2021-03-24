@@ -1,0 +1,19 @@
+{
+  "name": "starter-template",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "devDependencies": {
+    "@types/dat.gui": "^0.7.6",
+    "@types/three": "^0.126.0",
+    "dat.gui": "^0.7.7",
+    "prettier": "^2.2.1",
+    "vite": "^2.0.5"
+  },
+  "dependencies": {
+    "three": "^0.126.1"
+  }
+}

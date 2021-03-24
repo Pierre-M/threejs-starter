@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "target" : "esnext",
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+}
