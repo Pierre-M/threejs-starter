@@ -1,6 +1,7 @@
 import { Clock, PerspectiveCamera, Scene, WebGLRenderer } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import useWindow from "./useWindow";
+import useStatsUI from "./useStatsUI";
 
 type FrameHandler = (elapsedTime?: number, deltaTime?: number) => void;
 type Tick = (handler?: FrameHandler) => void;
@@ -19,6 +20,7 @@ const updateRendererSize = (
 
 export default (scene: Scene, camera: PerspectiveCamera): Tick => {
   const { resizeHandler, sizes } = useWindow();
+  const getStats = useStatsUI();
   const canvas = document.querySelector<HTMLCanvasElement>("canvas.webgl");
   const controls = new OrbitControls(camera, canvas);
   controls.enableDamping = true;
@@ -37,15 +39,17 @@ export default (scene: Scene, camera: PerspectiveCamera): Tick => {
   let oldElapsedTime = 0;
 
   const tick = (handler?: FrameHandler) => {
-    const elapsedTime = clock.getElapsedTime();
-    const deltaTime = elapsedTime - oldElapsedTime;
-    oldElapsedTime = elapsedTime;
+    getStats(() => {
+      const elapsedTime = clock.getElapsedTime();
+      const deltaTime = elapsedTime - oldElapsedTime;
+      oldElapsedTime = elapsedTime;
 
-    controls.update();
+      controls.update();
 
-    if (handler) handler(elapsedTime, deltaTime);
+      if (handler) handler(elapsedTime, deltaTime);
 
-    renderer.render(scene, camera);
+      renderer.render(scene, camera);
+    });
 
     window.requestAnimationFrame(() => tick(handler));
   };

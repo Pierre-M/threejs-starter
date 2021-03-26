@@ -8,12 +8,14 @@
   },
   "devDependencies": {
     "@types/dat.gui": "^0.7.6",
+    "@types/stats.js": "^0.17.0",
     "@types/three": "^0.126.0",
     "dat.gui": "^0.7.7",
     "prettier": "^2.2.1",
     "vite": "^2.0.5"
   },
   "dependencies": {
+    "stats.js": "^0.17.0",
     "three": "^0.126.1"
   }
 }
